@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    flex: 0 0 auto;
+}
+
+.content {
+    flex: 1 0 auto;
+    overflow-y: auto;
+    display: flex;
+}
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+main{
+    flex: 1;
+    padding: 20px;
+}
+
+.ticketsWrap {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    gap: 10px;
+}
