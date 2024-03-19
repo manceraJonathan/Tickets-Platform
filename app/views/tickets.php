@@ -1,5 +1,6 @@
 <?php
-require('layout.php');
+session_start();
+include('layout.php');
 
 html_head('Mis tickets');
 aside_header();
@@ -32,7 +33,7 @@ aside_header();
                         <div class="flex items-center space-x-4">
                             <input type="checkbox" name="" id="" class="mx-2 rounded-md" />
                             <div class="w-14 h-12 rounded-md bg-cerulean text-center flex items-center justify-center">
-                                <span class="text-lg text-accent">K</span>
+                                <span class="text-lg text-accent"><?php echo $_SESSION["nombre"][0]?></span>
                             </div>
                             <div class="flex flex-col p-2 text-secondary">
                                 <div>
@@ -41,7 +42,7 @@ aside_header();
                                 <span class="pt-2">Devolución dinero - Reembolso</span>
                                 <div class="ticket">
                                     <i class="fa-solid fa-envelope"></i>
-                                    <span class="font-bold">Karol Miranda</span>
+                                    <span class="font-bold"><?php echo $_SESSION["correo"]?></span>
                                     <span> - Creado hace un día - </span>
                                     <span>Vence en un día</span>
                                 </div>

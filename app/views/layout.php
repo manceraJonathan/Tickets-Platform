@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../public/css/layout.css" />
     <link rel="stylesheet" href="../../public/css/output.css" />
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title> <?php echo 'Aquiles | '. $title ?> </title>
   </head>
   <?php } ?>
@@ -29,19 +29,19 @@
           <div
             class="w-10 h-10 bg-white rounded-md flex items-center justify-center relative"
           >
-            <span class="text-[21px] font-bold">D</span>
+            <span class="text-[21px] font-bold"><?php echo $_SESSION["nombre"][0]?></span>
           </div>
           <div class="flex flex-col">
-            <span class="text-white">Desarrollador Junior</span>
-            <span class="text-white text-sm">City Drones</span>
+            <span class="text-white"><?php echo $_SESSION["cargo"]?></span>
+            <span class="text-white text-sm"><?php echo $_SESSION["nombre"]." " .$_SESSION["apellidos"]?></span>
           </div>
         </div>
         <div class="text-secondary text-sm mt-6">
           <div class="hover:bg-[#F1FAEE] p-2 text-white hover:text-berkeley_blue">
             <a href="dashboard.php">
               <i class="fa-solid ps-2 pe-4 fa-house "></i>Página
-              Principal</a
-            >
+              Principal</a>
+           
           </div>
           <div class="hover:bg-[#F1FAEE] p-2 text-white hover:text-berkeley_blue">
             <a href="tickets.php">
@@ -53,18 +53,20 @@
               <i class="fa-solid ps-2 pe-4 fa-plus"></i>Nuevo Ticket</a
             >
           </div>
+        
           <div class="hover:bg-[#F1FAEE] p-2 text-white hover:text-berkeley_blue ">
             <a href="#" class="">
               <i class="fa-solid ps-2 pe-4 fa-table-list"></i
-              >Registrar Actividad</a
-            >
+            >Registrar Actividad</a>
           </div>
         </div>
+       
         <!-- Administración -->
+        <?php if ($_SESSION["id_perfil"] == 1) { ?>
         <div class="text-secondary text-sm">
           <span class="p-2 block font-bold text-white">Administración</span>
           <div class="hover:bg-[#F1FAEE] p-2 text-white hover:text-berkeley_blue">
-            <a href="#">
+            <a href="users.php">
               <i class="fa-solid ps-2 pe-4 fa-user"></i>Usuarios
             </a>
           </div>
@@ -84,6 +86,7 @@
             >
           </div>
         </div>
+        <?php } ?>
       </aside>
 
       <div id="wrapper">
@@ -100,15 +103,14 @@
                 >
                   <i class="fa-solid fa-bell fa-lg text-berkeley_blue"></i>
                 </button>
-                <i
-                  class="fa-regular fa-circle-question fa-lg text-berkeley_blue"
-                ></i>
+                <a href="informacion.php" class="fa-regular fa-circle-question fa-lg text-berkeley_blue"></a>
+
                 <div class="relative pe-2">
                   <button
                     class="w-8 h-8 rounded-full my-2 bg-warning border-2 border-berkeley_blue focus:border-secondary focus:border-2"
                     id="profileIcon"
                   >
-                    JR
+                  <?php echo $_SESSION["nombre"][0].$_SESSION["apellidos"][0]?>
                   </button>
                   <div
                     class="absolute right-2 my-2 w-64 border-[0.2px] bg-berkeley_blue text-white border-[#39424A] rounded-md text-secondary hidden z-10"
@@ -118,21 +120,23 @@
                       <span class="text-xs ps-5">CUENTA</span>
                       <div class="flex space-x-4 px-5 py-3">
                         <img
-                          src="https://ui-avatars.com/api?name=Jonathan Mancera"
+                          src="https://ui-avatars.com/api?name=<?php echo $_SESSION["nombre"][0].$_SESSION["apellidos"][0]?>"
                           alt="user"
                           class="rounded-full w-10 h-10"
                         />
-                        <span class="text-sm"
-                          >Jonathan David <br />
-                          Mancera Ramirez <br />
-                          joda01574@gmail.com
+                        <span class="text-sm">
+                        <?php echo $_SESSION["nombre"]?>
+                        <br />
+                        <?php echo $_SESSION["apellidos"]?> 
+                        <br />
+                        <?php echo $_SESSION["correo"]?>
                         </span>
                       </div>
                       <div
                         class="flex justify-between items-center py-2 pe-4 hover:bg-tertiary"
                       >
-                        <a href="#" class="hover:bg-tertiary px-5"
-                          >Gestionar cuenta</a
+                        <a href="Cuenta.php" class="hover:bg-tertiary px-5"
+                          >Mi cuenta</a
                         >
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                       </div>
@@ -140,7 +144,7 @@
                         class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"
                       />
                       <div class="hover:bg-tertiary py-2">
-                        <a href="#" class="px-5">Cerrar sesión</a>
+                        <a href="login.php" class="px-5">Cerrar sesión</a>
                       </div>
                     </div>
                   </div>
@@ -172,7 +176,7 @@
                           class="w-32 mb-8"
                         />
                         <span class="font-[500] text-[20px]"
-                          >No tiene notificaciones sin leer</span
+                          >No tiene notificaciones por el momento</span
                         >
                       </div>
                     </div>
@@ -210,13 +214,8 @@
       });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+    <script src="../../node_modules/jquery/dist/jquery.min.js"></script>
 
-<!-- Initialize Quill editor -->
-<script>
-  const quill = new Quill('#descripcion', {
-    theme: 'snow'
-  });
-</script>
   </body>
 </html>
 <?php }?>
